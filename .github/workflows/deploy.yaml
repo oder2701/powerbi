@@ -29,8 +29,8 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: 192.168.1.11
-        username: SHA256:4xCWj11PAN3dSyL6L0LUd+rEMtnGOW6u9rLcaMXeouM root@k3s-master01
-        key: Root123
+        username: root
+        key: SHA256:4xCWj11PAN3dSyL6L0LUd+rEMtnGOW6u9rLcaMXeouM root@k3s-master01
         script: |
           kubectl apply -f powerbi.yaml
 
