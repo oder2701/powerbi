@@ -28,9 +28,9 @@ jobs:
     - name: SSH into K3s server and deploy
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.K3S_HOST }}
-        username: ${{ secrets.K3S_USER }}
-        key: ${{ secrets.K3S_PASSWORD }}
+        host: 192.168.1.11
+        username: root
+        password: Root123
         run: |
           kubectl apply -f powerbi.yaml
 
