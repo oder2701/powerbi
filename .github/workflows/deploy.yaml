@@ -20,7 +20,7 @@ jobs:
         username: oder2701
         password: Concol1986*-16
 
-    - name: Build and Push Image powerbi:latest
+    - name: Build and Push Image MIA-PowerBI
       run: |
         docker build -t docker.io/${{ env.IMAGE_NAME }}:latest .
         docker push docker.io/${{ env.IMAGE_NAME }}:latest
