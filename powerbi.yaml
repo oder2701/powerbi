@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: powerbi
+  namespace: development
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: powerbi
+  template:
+    metadata:
+      labels:
+        app: powerbi
+    spec:
+      containers:
+        - name: powerbi
+          image: oder2701/mia-pbi:v2
+          ports:
+            - containerPort: 8080
+            
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: powerbi
+  namespace: development
+spec:
+  selector:
+    app: powerbi
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
+
+  
