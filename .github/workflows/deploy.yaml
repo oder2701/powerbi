@@ -31,7 +31,7 @@ jobs:
         host: ${{ secrets.K3S_HOST }}
         username: ${{ secrets.K3S_USER }}
         key: ${{ secrets.K3S_PASSWORD }}
-        script: |
+        run: |
           kubectl apply -f powerbi.yaml
 
   
