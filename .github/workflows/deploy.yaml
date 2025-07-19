@@ -7,7 +7,7 @@ env:
   NAMESPACE: development
 
 jobs:
-  Build-and-Deploy MIA-PowerBI:
+  build-and-deploy-powerbi:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +20,7 @@ jobs:
         username: oder2701
         password: Concol1986*-16
 
-    - name: Build and Push image powerbi:latest
+    - name: Build and Push Image powerbi:latest
       run: |
         docker build -t docker.io/${{ env.IMAGE_NAME }}:latest .
         docker push docker.io/${{ env.IMAGE_NAME }}:latest
