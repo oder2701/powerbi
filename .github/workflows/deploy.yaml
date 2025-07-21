@@ -8,6 +8,7 @@ env:
 
 jobs:
   build-and-deploy-powerbi:
+  
     runs-on: self-hosted
 
     steps:
