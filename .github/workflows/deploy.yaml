@@ -33,7 +33,7 @@ jobs:
         username: root
         password: Root123
         script: |
-          kubectl apply -f k3s/powerbi.yaml
+          kubectl apply -f .github/k3s/powerbi.yaml
 
 
 
