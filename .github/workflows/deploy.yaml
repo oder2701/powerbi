@@ -8,7 +8,8 @@ env:
 
 jobs:
   build-and-deploy-powerbi:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+    
 
     steps:
     - name: Checkout Repo GitHub/MIA-PowerBI
