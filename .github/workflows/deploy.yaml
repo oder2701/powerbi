@@ -29,7 +29,7 @@ jobs:
     - name: Deploy MIA-PowerBI
       uses: appleboy/ssh-action@master
       with:
-        host: k3s-master01
+        host: 192.168.1.11
         username: root
         password: Root123
         run: |
