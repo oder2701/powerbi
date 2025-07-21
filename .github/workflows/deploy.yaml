@@ -8,8 +8,8 @@ env:
 
 jobs:
   build-and-deploy-powerbi:
-  
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+    
 
     steps:
     - name: Checkout Repo GitHub/MIA-PowerBI
@@ -27,6 +27,7 @@ jobs:
         docker push docker.io/${{ env.IMAGE_NAME }}:latest
 
     - name: Deploy MIA-PowerBI
+      runs-on: self-hosted
       uses: appleboy/ssh-action@master
       with:
         host: 192.168.1.11
