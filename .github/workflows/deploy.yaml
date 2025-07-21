@@ -32,8 +32,8 @@ jobs:
         host: 192.168.1.11
         username: root
         password: Root123
-        script: |
-          kubectl apply -f ./powerbi.yaml
+        run: |
+          kubectl apply -f .github/k3s/powerbi.yaml
 
 
 
