@@ -3,10 +3,10 @@ name: Deploy Pipeline PowerBI
 
 jobs:
   build-and-deploy:
-    runs-on: [self-hosted, linux]
+    runs-on: [self-hosted]
 
     steps:
-    - name: Checkout Repo GitHub/MIA-PowerBI
+    - name: Checkout Repo PowerBI
       uses: actions/checkout@v3
 
     - name: Login to DHR
@@ -15,20 +15,14 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_PASSWD }}
 
-    - name: Build and Push
+    - name: Build and Push Image PowerBI
       run: |
         docker build -t docker.io/${{ secrets.IMAGE_NAME }}:latest .
         docker push docker.io/${{ secrets.IMAGE_NAME }}:latest
-
-    - name: Deploy
-      uses: appleboy/ssh-action@master
-      with:
-        host: 192.168.1.11
-        username: root
-        password: Root123
-        run: |
-          export KUBECONFIG=$HOME/.kube/config
-          kubectl apply -f .github/k3s/powerbi.yaml
+          
+    - name: Deploy PowerBI to K3s
+      run: |
+        kubectl replace -f ${{ secrets.REPO }}
 
 
 
