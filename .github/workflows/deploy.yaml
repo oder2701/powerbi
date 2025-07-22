@@ -3,7 +3,7 @@ name: Deploy Pipeline PowerBI
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux]
 
     steps:
     - name: Checkout Repo GitHub/MIA-PowerBI
