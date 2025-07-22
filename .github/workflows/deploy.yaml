@@ -22,7 +22,7 @@ jobs:
         
     - name: Deploy tu K3s
       run: |
-        kubectl apply -f ${{ secrets.REPO }}
+        kubectl replace -f ${{ secrets.REPO }}
 
 
   
