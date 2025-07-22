@@ -1,12 +1,12 @@
 on: push
-name: Deploy Pipeline PowerBI
+name: Deploy Pipeline Tablero MIA Power BI
 
 jobs:
   build-and-deploy:
     runs-on: [self-hosted]
 
     steps:
-    - name: Checkout Repo PowerBI
+    - name: Checkout Repo Tablero MIA Power BI
       uses: actions/checkout@v3
 
     - name: Login to DHR
@@ -15,12 +15,12 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USER }}
         password: ${{ secrets.DOCKERHUB_PASSWD }}
 
-    - name: Build and Push Image PowerBI
+    - name: Build and Push Image Tablero MIA Power BI to DHR
       run: |
         docker build -t docker.io/${{ secrets.IMAGE_NAME }}:latest .
         docker push docker.io/${{ secrets.IMAGE_NAME }}:latest
-          
-    - name: Deploy PowerBI to K3s
+        
+    - name: Deploy Tablero MIA Power BI to K3s
       run: |
         kubectl replace -f ${{ secrets.REPO }}
 
