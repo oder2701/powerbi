@@ -10,7 +10,6 @@ jobs:
   build-and-deploy:
     runs-on: [self-hosted, linux]
     
-
     steps:
     - name: Checkout Repo GitHub/MIA-PowerBI
       uses: actions/checkout@v3
