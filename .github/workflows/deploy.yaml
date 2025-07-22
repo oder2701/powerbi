@@ -1,15 +1,9 @@
 on: push
 name: Deploy Pipeline PowerBI
 
-env:
-  IMAGE_NAME: oder2701/mia-pbi
-  K3S_DEPLOYMENT: powerbi
-  NAMESPACE: development
-
 jobs:
   build-and-deploy:
     runs-on: [self-hosted, linux]
-    
 
     steps:
     - name: Checkout Repo GitHub/MIA-PowerBI
@@ -18,13 +12,13 @@ jobs:
     - name: Login to DHR
       uses: docker/login-action@v2
       with:
-        username: oder2701
-        password: Concol1986*-16
+        username: ${{ secrets.DOCKERHUB_USER }}
+        password: ${{ secrets.DOCKERHUB_PASSWD }}
 
     - name: Build and Push
       run: |
-        docker build -t docker.io/${{ env.IMAGE_NAME }}:latest .
-        docker push docker.io/${{ env.IMAGE_NAME }}:latest
+        docker build -t docker.io/${{ secrets.IMAGE_NAME }}:latest .
+        docker push docker.io/${{ secrets.IMAGE_NAME }}:latest
 
     - name: Deploy
       uses: appleboy/ssh-action@master
@@ -34,7 +28,7 @@ jobs:
         password: Root123
         run: |
           export KUBECONFIG=$HOME/.kube/config
-          kubectl apply -f -n ${{ env.NAMESPACE }} .github/k3s/powerbi.yaml
+          kubectl apply -f .github/k3s/powerbi.yaml
 
 
 
