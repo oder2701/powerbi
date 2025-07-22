@@ -32,7 +32,7 @@ jobs:
       env:
         KUBECONFIG_CONTENT: ${{ secrets.KUBECONFIG_CONTENT }}
       with: 
-        args: apply -f ${{ secrets.REPO }}
+        args: apply -f ${{ secrets.REPO }} 
 
 
 
