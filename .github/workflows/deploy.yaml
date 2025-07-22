@@ -32,8 +32,8 @@ jobs:
        
     - name: Set KUBECONFIG from secret
       run: |
-         echo "${{ secrets.KUBECONFIG_CONTENT }}" | base64 -d > $HOME/.kube/config
-         chmod 600 $HOME/.kube/config  
+         export KUBECONFIG=$HOME/.kube/config
+ 
          
     - name: Test kubectl connection
       run: kubectl get nodes
