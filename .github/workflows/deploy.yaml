@@ -30,9 +30,6 @@ jobs:
        echo "${{ secrets.KUBECONFIG_CONTENT }}" > $HOME/.kube/config
        chmod 600 $HOME/.kube/config
 
-    - name: Test kubectl connection
-      run: kubectl get nodes
-
     - name: Deploy
       run: kubectl apply -f -n ${{ secrets.NAMESPACE }} ${{ secrets.REPO }}
 
