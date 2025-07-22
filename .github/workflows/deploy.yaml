@@ -34,7 +34,7 @@ jobs:
         password: Root123
         run: |
           export KUBECONFIG=$HOME/.kube/config
-          kubectl apply -f .github/k3s/powerbi.yaml
+          kubectl apply -f -n ${{ env.NAMESPACE }} .github/k3s/powerbi.yaml
 
 
 
