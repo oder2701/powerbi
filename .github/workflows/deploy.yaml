@@ -31,7 +31,7 @@ jobs:
        chmod 600 $HOME/.kube/config
        
     - name: Deploy
-      run: kubectl apply -f .github/k3s/powerbi.yaml -n development
+      run: kubectl apply -f .github/k3s/powerbi.yaml
 
 
 
