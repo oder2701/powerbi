@@ -4,7 +4,7 @@ metadata:
   name: powerbi
   namespace: development
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: powerbi
