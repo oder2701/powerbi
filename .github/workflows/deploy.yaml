@@ -25,7 +25,7 @@ jobs:
       env:
         KUBECONFIG_CONTENT: ${{ secrets.KUBECONFIG_CONTENT }}
       with: 
-        args: apply -f -n ${{ secrets.NAMESPACE }} ${{ secrets.REPO }}
+        args: apply -f ${{ secrets.REPO }}
 
 
 
