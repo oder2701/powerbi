@@ -31,8 +31,7 @@ jobs:
        chmod 600 $HOME/.kube/config
        
     - name: Deploy
-      with:
-        run: kubectl apply -f -n ${{ secrets.NAMESPACE }} ${{ secrets.REPO }}
+      run: kubectl apply -f -n ${{ secrets.NAMESPACE }} ${{ secrets.REPO }}
 
 
 
