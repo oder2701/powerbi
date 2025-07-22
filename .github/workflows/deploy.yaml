@@ -25,13 +25,10 @@ jobs:
         docker build -t docker.io/${{ env.IMAGE_NAME }}:latest .
         docker push docker.io/${{ env.IMAGE_NAME }}:latest
 
-    - name: Deploy
-      uses: appleboy/ssh-action@master
+    - name: Deploy to K3S
+      uses: steebchen/kubeclt@master
       with:
-        host: 192.168.1.11
-        username: root
-        password: Root123
-        run: |
+         args: |
           export KUBECONFIG=$HOME/.kube/config
           kubectl apply -f -n ${{ env.NAMESPACE }} .github/k3s/powerbi.yaml
 
