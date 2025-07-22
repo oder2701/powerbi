@@ -8,7 +8,7 @@ env:
 
 jobs:
   build-and-deploy:
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-latest
     
     steps:
     - name: Checkout Repo GitHub/MIA-PowerBI
@@ -25,19 +25,21 @@ jobs:
         docker build -t docker.io/${{ env.IMAGE_NAME }}:latest .
         docker push docker.io/${{ env.IMAGE_NAME }}:latest
         
-    - name: SSH
-      uses: appleboy/ssh-action@master
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
       with:
-        host: 192.168.1.11
-        username: root
-        password: Root123
-        
+       version: 'latest'  
+       
+    - name: Set KUBECONFIG from secret
+      run: |
+         echo "${{ secrets.KUBECONFIG_CONTENT }}" > $HOME/.kube/config
+         chmod 600 $HOME/.kube/config  
+         
+    - name: Test kubectl connection
+      run: kubectl get nodes
+       
     - name: Deploy to K3S
-      uses: steebchen/kubectl@master
-      with:
-         args: |
-          export KUBECONFIG=$HOME/.kube/config
-          kubectl apply -f -n ${{ env.NAMESPACE }} .github/k3s/powerbi.yaml
+      run: kubectl apply -f -n ${{ env.NAMESPACE }} .github/k3s/powerbi.yaml
 
 
 
