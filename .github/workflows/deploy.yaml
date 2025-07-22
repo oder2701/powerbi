@@ -36,7 +36,7 @@ jobs:
  
       
     - name: Deploy to K3S
-      run: kubectl apply -f -n ${{ env.NAMESPACE }} .github/k3s/powerbi.yaml
+      run: kubectl apply -f .github/k3s/powerbi.yaml
 
 
 
