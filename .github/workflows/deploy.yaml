@@ -34,7 +34,7 @@ jobs:
       run: |
          export KUBECONFIG=$HOME/.kube/config
 
-    
+  
     - name: Deploy to K3S
       run: kubectl apply -f .github/k3s/powerbi.yaml --validate=false
 
