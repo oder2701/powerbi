@@ -25,7 +25,7 @@ jobs:
       env:
         KUBECONFIG_CONTENT: ${{ secrets.KUBECONFIG_CONTENT }}
       with: 
-        args: apply -f .github/k3s/powerbi.yaml
+        args: apply -f -n ${{ secrets.NAMESPACE }} ${{ secrets.REPO }}
 
 
 
