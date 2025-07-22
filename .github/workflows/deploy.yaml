@@ -22,7 +22,7 @@ jobs:
         
     - name: Deploy Tablero MIA Power BI to K3s
       run: |
-        kubectl replace -f ${{ secrets.REPO }} 
+        kubectl replace -f ${{ secrets.REPO }}
 
 
 
