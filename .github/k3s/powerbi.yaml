@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: powerbi
-          image: ${{ secrets.IMAGE_NAME }}:latest
+          image: oder2701/powerbi:latest
           ports:
-            - containerPort: 8081
+            - containerPort: 8080
             
 ---
 apiVersion: v1
@@ -30,8 +30,8 @@ spec:
     app: powerbi
   ports:
     - protocol: TCP
-      port: 8081
-      targetPort: 8081
+      port: 8080
+      targetPort: 8080
   type: LoadBalancer
 
   
