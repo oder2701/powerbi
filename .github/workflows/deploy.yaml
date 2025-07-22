@@ -3,7 +3,7 @@ name: Deploy Pipeline PowerBI
 
 jobs:
   build-and-deploy:
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repo GitHub/MIA-PowerBI
@@ -20,18 +20,12 @@ jobs:
         docker build -t docker.io/${{ secrets.IMAGE_NAME }}:latest .
         docker push docker.io/${{ secrets.IMAGE_NAME }}:latest
 
-    - name: Set up kubectl
-      uses: azure/setup-kubectl@v3
-      with:
-         version: 'latest'
-
-    - name: Set KUBECONFIG from secret
-      run: |
-       echo "${{ secrets.KUBECONFIG_CONTENT }}" > $HOME/.kube/config
-       chmod 600 $HOME/.kube/config
-       
-    - name: Deploy
-      run: kubectl apply -f .github/k3s/powerbi.yaml
+    - name: Deploy tu K3s
+      uses: steebchen/kubectl@master
+      env:
+        KUBECONFIG_CONTENT: ${{ secrets.KUBECONFIG_CONTENT }}
+      with: 
+        args: apply -f .github/k3s/powerbi.yaml
 
 
 
