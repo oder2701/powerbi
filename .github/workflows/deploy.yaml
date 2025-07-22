@@ -19,7 +19,14 @@ jobs:
       run: |
         docker build -t docker.io/${{ secrets.IMAGE_NAME }}:latest .
         docker push docker.io/${{ secrets.IMAGE_NAME }}:latest
-
+        
+    - name: Deploy SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: 192.168.1.11
+        username: root
+        password: Root123
+        
     - name: Deploy tu K3s
       uses: steebchen/kubectl@master
       env:
