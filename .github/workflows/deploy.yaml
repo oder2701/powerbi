@@ -22,6 +22,7 @@ jobs:
         
     - name: Deploy tu K3s
       run: |
+        kubectl delete -f ${{ secrets.REPO }}
         kubectl apply -f ${{ secrets.REPO }}
 
 
