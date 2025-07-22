@@ -3,10 +3,10 @@ name: Deploy Pipeline PowerBI
 
 jobs:
   build-and-deploy:
-    runs-on: [self-hosted, K3s]
+    runs-on: [self-hosted]
 
     steps:
-    - name: Checkout Repo GitHub/MIA-PowerBI
+    - name: Checkout Repo
       uses: actions/checkout@v3
 
     - name: Login to DHR
