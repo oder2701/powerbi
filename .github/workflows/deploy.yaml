@@ -7,8 +7,8 @@ env:
   NAMESPACE: development
 
 jobs:
-  build-and-deploy-powerbi:
-    runs-on: self-hosted
+  build-and-deploy:
+    runs-on: [self-hosted, linux]
     
 
     steps:
@@ -21,18 +21,19 @@ jobs:
         username: oder2701
         password: Concol1986*-16
 
-    - name: Build and Push Image MIA-PowerBI
+    - name: Build and Push
       run: |
         docker build -t docker.io/${{ env.IMAGE_NAME }}:latest .
         docker push docker.io/${{ env.IMAGE_NAME }}:latest
 
-    - name: Deploy MIA-PowerBI
+    - name: Deploy
       uses: appleboy/ssh-action@master
       with:
         host: 192.168.1.11
         username: root
         password: Root123
         run: |
+          export KUBECONFIG=$HOME/.kube/config
           kubectl apply -f .github/k3s/powerbi.yaml
 
 
